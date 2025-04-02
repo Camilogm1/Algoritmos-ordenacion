@@ -1,0 +1,78 @@
+import random
+
+def visualizar_lista(lalista):
+    for posicion in range (0,len(lalista)):
+        if (posicion+1)%10==0:
+            print(f'{lalista[posicion]}')
+        else:
+            print(lalista[posicion],'\t', end="")
+
+def ordenar_lista_nativa(La_lista):
+    lista_ordenada=sorted(La_lista)
+    return lista_ordenada
+
+def ordenar_lista_burbuja(lalista):
+    totalcambios = 0
+    recorridos = 0
+    cambios = True
+ 
+    while cambios is True:
+        cambios = False
+ 
+        for i in range (len(lalista)-1):
+            if lalista[i] > lalista[i+1]:
+                lalista[i], lalista[i+1] = lalista[i+1], lalista[i]
+                totalcambios += 1
+                print(f'Cambio No.{totalcambios}, se cambia de lugar {lalista[i+1]}, {lalista[i]}')
+                cambios = True
+        recorridos += 1
+        print(f'Finalizado recorrido No. {recorridos}')
+ 
+ 
+ 
+    return lalista
+
+def ordena_lista_insercion(la_lista):
+    longitud=len(la_lista)
+    total_cambios=0
+
+    for i in range (longitud):
+        indice_minimo=i
+        for j in range(i+1,longitud):
+         if la_lista[j] <la_lista[indice_minimo]:
+                indice_minimo=j 
+    
+        print(f'Cambio No. ,{total_cambios+1},se cambiara de lugar el {la_lista[i]} ')
+        la_lista[i],la_lista[indice_minimo]=la_lista[indice_minimo],la_lista[i]
+        total_cambios+=1
+    print(f'\n Usando el algoritmo se hicieron {total_cambios} cambio de posiciones')
+    return la_lista
+ 
+
+inferior=1
+superior =100
+cantidad_elementos=20
+los_numeros=[]
+
+for cantidad in range (cantidad_elementos):
+    dato =random.randint(inferior,superior)
+    los_numeros.append(dato)
+
+print (f' La lista generada es: {los_numeros}')
+
+print (f'La lista generada es:{los_numeros} ') 
+visualizar_lista(los_numeros)
+
+print(f'La lista ordenada usando el metodo nativo')
+lista_ordenada=ordenar_lista_nativa(los_numeros)
+visualizar_lista(lista_ordenada)
+
+print('\n La lista ordenada usada en el metodo burbuja es')
+lista_ordenada=ordenar_lista_burbuja(los_numeros)
+visualizar_lista(lista_ordenada)
+
+
+print('\n La lista ordenada usada en el metodo de insersion')
+lista_ordenada=ordena_lista_insercion(los_numeros)
+visualizar_lista(lista_ordenada)
+
